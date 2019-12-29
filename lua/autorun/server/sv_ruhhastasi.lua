@@ -1,8 +1,8 @@
 util.AddNetworkString("egomanyakkurucu")
 
 
-local function hosgeldinkardesim( ply,steamid )
-if steamid == "STEAM_0:1:61971864" or "STEAM_0:0:00000000" then -- STEAMIDLERİ DEĞİŞİN 
+local function hosgeldinkardesim( ply )
+if ply:IsSuperAdmin() then
 timer.Create( "egoistkurucu", 1, 5, function() ply:ChatPrint(ply:Nick().." sunucuya giriş yaptı!") end )
 net.Start("egomanyakkurucu") 
 net.Send(ply)
