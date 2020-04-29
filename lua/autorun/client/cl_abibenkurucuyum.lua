@@ -2,9 +2,14 @@
 
 
 net.Receive("egomanyakkurucu",function(len)
-local silmezamani = 10 -- Kurucu sunucuya girdiğinde efektlerin ne zaman siliniceğini belirler (saniye)
+local silmezamani = 25 -- Kurucu sunucuya girdiğinde efektlerin ne zaman siliniceğini belirler (saniye)
 surface.CreateFont( "kurucugeldi", { font = "Default", size = 50,weight = 500, antialias = true,} )
-hook.Add( "HUDPaint", "h", function() draw.SimpleText( "Kurucu Sunucuya Giris Yaptı", "kurucugeldi",  ScrW() * 0.0+380,ScrH() * 0.0+200, Color(200,0,0)) end )
+hook.Add( "HUDPaint", "h", function() 
+	if (IsValid(LocalPlayer())) then 
+	draw.SimpleText( "Kurucu Sunucuya Giris Yaptı", "kurucugeldi",  ScrW() * 0.50,ScrH() * 0.50, Color(200,0,0),TEXT_ALIGN_CENTER) 
+end 
+end )
+
 timer.Create( "silbakalim", silmezamani, 1, function() hook.Remove("HUDPaint","h") end )
 timer.Create( "silbakalim2", silmezamani, 1, function() hook.Remove("RenderScreenspaceEffects", "patlasekerim") end )
 hook.Add( "RenderScreenspaceEffects", "patlasekerim", function() local sinScaler = math.sin( CurTime() ) DrawBloom( 0, 3, sinScaler *math.Rand(1, 8), sinScaler *math.Rand(1, 8), 6, math.Rand(0.5, 2), math.Rand(0, 0.3), math.Rand(0, 0.3), math.Rand(0.5, 1) )
