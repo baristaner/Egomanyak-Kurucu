@@ -1,11 +1,17 @@
 util.AddNetworkString("egomanyakkurucu")
 
 
-local function hosgeldinkardesim( ply )
-if ply:IsSuperAdmin() then
-timer.Create( "egoistkurucu", 1, 5, function() ply:ChatPrint(ply:Nick().." sunucuya giriş yaptı!") end )
-net.Start("egomanyakkurucu") 
-net.Send(ply)
+local function hosgeldinkardesim( ply, steamid, uniqueid )
+if steamid == "STEAM_0:1:61971864" then -- and ekleyerek fazla steamid koyabilirsiniz örnek and if steamid == "STEAM_0:1:61971864" and "STEAM_0:1:61971864" and "STEAM_0:1:61971864" then
+timer.Create( "egoistkurucu", 1, 5, function() 
+for k,v in pairs(player.GetAll()) do
+    net.Start("egomanyakkurucu") 
+    net.Send(v)
+    v:ChatPrint(ply:Nick().." sunucuya giriş yaptı!") 
+end
+end )
+
+
 end
 end
 
